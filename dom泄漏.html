@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div id="container">
+            <h1 id="heading">I am just a heading nothing much</h1>
+        </div>
+    </div>
+    <script>
+
+
+var parentEle = document.getElementById('container'); //得到父元素的引用
+
+var headingEle = document.getElementById('heading'); //得到子元素的引用
+
+
+parentEle.remove();
+headingEle = null; // 从DOM中移除父元素,但是它的子元素引用仍然存在，所以parentEle不会被GC回收，因此导致了DOM泄漏。
+console.log(headingEle); // <h1 id="heading">I am just a heading nothing much</h1>
+    </script>
+</body>
+</html>
